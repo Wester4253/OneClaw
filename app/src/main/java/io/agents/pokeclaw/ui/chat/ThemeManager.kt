@@ -65,6 +65,24 @@ object ThemeManager {
             toolOk = Color.parseColor("#A3A3A3"), toolDefault = Color.parseColor("#555555"),
             divider = Color.parseColor("#222222")
         ),
+        "graphite_dark" to ChatColors(
+            bg = Color.parseColor("#101314"), toolbarBg = Color.parseColor("#181D1F"),
+            userBubble = Color.parseColor("#2F7A78"), userText = Color.parseColor("#F2FFFC"),
+            aiBubble = Color.parseColor("#242A2D"), aiBubbleBorder = Color.parseColor("#333B3F"),
+            aiText = Color.parseColor("#DDE6E3"), avatarBg = Color.parseColor("#9B6A3D"),
+            inputBorder = Color.parseColor("#30383A"), sendColor = Color.parseColor("#66D4C8"),
+            toolOk = Color.parseColor("#66D4C8"), toolDefault = Color.parseColor("#667274"),
+            divider = Color.parseColor("#242A2B")
+        ),
+        "orchid_dark" to ChatColors(
+            bg = Color.parseColor("#171216"), toolbarBg = Color.parseColor("#211A20"),
+            userBubble = Color.parseColor("#9B5C8F"), userText = Color.parseColor("#FFF2FC"),
+            aiBubble = Color.parseColor("#30252E"), aiBubbleBorder = Color.parseColor("#453542"),
+            aiText = Color.parseColor("#E7D8E3"), avatarBg = Color.parseColor("#B45B63"),
+            inputBorder = Color.parseColor("#3A2D37"), sendColor = Color.parseColor("#F08AA0"),
+            toolOk = Color.parseColor("#F08AA0"), toolDefault = Color.parseColor("#77616F"),
+            divider = Color.parseColor("#2A2028")
+        ),
         "ember_light" to ChatColors(
             bg = Color.parseColor("#F5EDE5"), toolbarBg = Color.parseColor("#EDE3DA"),
             userBubble = Color.parseColor("#C0542E"), userText = Color.parseColor("#FFFFFF"),
@@ -100,6 +118,24 @@ object ThemeManager {
             inputBorder = Color.parseColor("#CCCCCC"), sendColor = Color.parseColor("#555555"),
             toolOk = Color.parseColor("#666666"), toolDefault = Color.parseColor("#BBBBBB"),
             divider = Color.parseColor("#CCCCCC")
+        ),
+        "graphite_light" to ChatColors(
+            bg = Color.parseColor("#F2F4F1"), toolbarBg = Color.parseColor("#E7EBE7"),
+            userBubble = Color.parseColor("#2F7A78"), userText = Color.parseColor("#FFFFFF"),
+            aiBubble = Color.parseColor("#DDE5E1"), aiBubbleBorder = Color.parseColor("#B8C8C2"),
+            aiText = Color.parseColor("#273837"), avatarBg = Color.parseColor("#9B6A3D"),
+            inputBorder = Color.parseColor("#BCC9C5"), sendColor = Color.parseColor("#2F7A78"),
+            toolOk = Color.parseColor("#2F7A78"), toolDefault = Color.parseColor("#8FA09A"),
+            divider = Color.parseColor("#CED8D4")
+        ),
+        "orchid_light" to ChatColors(
+            bg = Color.parseColor("#F5EEF3"), toolbarBg = Color.parseColor("#ECE0E8"),
+            userBubble = Color.parseColor("#9B5C8F"), userText = Color.parseColor("#FFFFFF"),
+            aiBubble = Color.parseColor("#E7D7E2"), aiBubbleBorder = Color.parseColor("#D0B6C8"),
+            aiText = Color.parseColor("#4B3144"), avatarBg = Color.parseColor("#B45B63"),
+            inputBorder = Color.parseColor("#D8C3D2"), sendColor = Color.parseColor("#9B5C8F"),
+            toolOk = Color.parseColor("#9B5C8F"), toolDefault = Color.parseColor("#B69AAE"),
+            divider = Color.parseColor("#DECED9")
         )
     )
 

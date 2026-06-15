@@ -48,6 +48,8 @@ object PromptSkillManager {
 
     fun getAll(): List<PromptSkill> = skills.values.toList()
 
+    fun getUserSkillDirectories(context: Context): List<File> = userSkillDirs(context)
+
     fun findById(id: String): PromptSkill? = skills[normalizeId(id)]
 
     fun findBestMatch(userRequest: String): PromptSkill? {

@@ -62,6 +62,7 @@ class SettingsActivity : BaseActivity() {
     private var externalAutomationItem: io.agents.pokeclaw.widget.MenuItem? = null
     private var globalPromptItem: io.agents.pokeclaw.widget.MenuItem? = null
     private var customModelUrlItem: io.agents.pokeclaw.widget.MenuItem? = null
+    private var skillsItem: io.agents.pokeclaw.widget.MenuItem? = null
 
     private val viewModel by lazy {
         ViewModelProvider(this)[SettingsViewModel::class.java]
@@ -110,6 +111,7 @@ class SettingsActivity : BaseActivity() {
         refreshSettings()
         refreshPermissions()
         refreshExternalAutomation()
+        refreshSkillsStatus()
         handler.removeCallbacks(permPoller)
         handler.postDelayed(permPoller, 1000)
     }
@@ -133,6 +135,10 @@ class SettingsActivity : BaseActivity() {
         externalAutomationItem?.setTrailingText(
             if (KVUtils.isExternalAutomationEnabled()) "Enabled" else "Disabled"
         )
+    }
+
+    private fun refreshSkillsStatus() {
+        skillsItem?.setTrailingText("${io.agents.pokeclaw.agent.skill.PromptSkillManager.getAll().size} loaded")
     }
 
     /** Refreshes the trailing label on the global-prompt row (#45). */
@@ -193,6 +199,10 @@ class SettingsActivity : BaseActivity() {
     private fun refreshSettings() {
         viewModel.refresh()
     }
+
+    private fun themeLabel(themeId: String): String =
+        themeId.split("_")
+            .joinToString(" ") { part -> part.replaceFirstChar { it.uppercase() } }
 
     private fun toggleExternalAutomation() {
         if (KVUtils.isExternalAutomationEnabled()) {
@@ -437,7 +447,7 @@ class SettingsActivity : BaseActivity() {
             showDivider = false
         ).apply {
             val themeId = KVUtils.getString("THEME_ID", "abyss_dark")
-            val label = themeId.replace("_", " ").replaceFirstChar { it.uppercase() }
+            val label = themeLabel(themeId)
             setTrailingText(label)
         }
 
@@ -445,15 +455,27 @@ class SettingsActivity : BaseActivity() {
         val toolsGroup = findViewById<MenuGroup>(R.id.toolsGroup)
         toolsGroup.setTitle("Tools")
 
+        skillsItem = toolsGroup.addMenuItem(
+            leadingIcon = android.R.drawable.ic_menu_agenda,
+            title = "Skills",
+            onClick = {
+                startActivity(Intent(this, SkillsActivity::class.java))
+            },
+            showDivider = true
+        ).apply {
+            setTrailingText("${io.agents.pokeclaw.agent.skill.PromptSkillManager.getAll().size} loaded")
+        }
+
         toolsGroup.addMenuItem(
             leadingIcon = android.R.drawable.ic_menu_manage,
             title = "Manage Tools",
             onClick = {
-                Toast.makeText(this, "12 tools enabled. Tool management coming soon.", Toast.LENGTH_SHORT).show()
+                val count = io.agents.pokeclaw.tool.ToolRegistry.getInstance().getAllTools().size
+                Toast.makeText(this, "$count tools enabled. Tool management coming soon.", Toast.LENGTH_SHORT).show()
             },
             showDivider = false
         ).apply {
-            setTrailingText("12 enabled")
+            setTrailingText("${io.agents.pokeclaw.tool.ToolRegistry.getInstance().getAllTools().size} enabled")
         }
 
         // Remote Control

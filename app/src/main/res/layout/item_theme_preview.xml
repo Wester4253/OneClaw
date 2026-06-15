@@ -10,9 +10,9 @@
     <LinearLayout
         android:id="@+id/cardPreview"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="112dp"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <!-- Fake chat bubbles -->
         <View
@@ -53,7 +53,7 @@
             android:id="@+id/previewInputBar"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 
     <!-- Selected indicator -->
@@ -71,5 +71,5 @@
         android:layout_height="wrap_content"
         android:paddingTop="4dp"
         android:textColor="@color/colorTextSecondary"
-        android:textSize="11dp" />
+        android:textSize="12dp" />
 </LinearLayout>

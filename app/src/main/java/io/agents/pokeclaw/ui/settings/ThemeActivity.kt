@@ -29,10 +29,19 @@ class ThemeActivity : BaseActivity() {
         val accent: Int
     )
 
-    // Only expose ember (brand color). Other themes kept in ThemeManager for future use.
     private val themes = listOf(
-        ThemeConfig("ember_dark", "Dark", true, Color.parseColor("#141010"), Color.parseColor("#D45A30"), Color.parseColor("#352A25"), Color.parseColor("#C0542E"), Color.parseColor("#2E2623"), Color.parseColor("#E8845A")),
-        ThemeConfig("ember_light", "Light", false, Color.parseColor("#F0E8E0"), Color.parseColor("#C0542E"), Color.parseColor("#E6D8CA"), Color.parseColor("#C0542E"), Color.parseColor("#D0C4B8"), Color.parseColor("#C0542E")),
+        ThemeConfig("ember_dark", "Ember", true, Color.parseColor("#151211"), Color.parseColor("#D45A30"), Color.parseColor("#342C28"), Color.parseColor("#C0542E"), Color.parseColor("#332B27"), Color.parseColor("#E8845A")),
+        ThemeConfig("abyss_dark", "Abyss", true, Color.parseColor("#0C111B"), Color.parseColor("#2563EB"), Color.parseColor("#1E2D45"), Color.parseColor("#1D4ED8"), Color.parseColor("#1E293B"), Color.parseColor("#60A5FA")),
+        ThemeConfig("moss_dark", "Moss", true, Color.parseColor("#0F1410"), Color.parseColor("#2D7A4F"), Color.parseColor("#243524"), Color.parseColor("#2D7A4F"), Color.parseColor("#233023"), Color.parseColor("#6EE7A0")),
+        ThemeConfig("onyx_dark", "Onyx", true, Color.parseColor("#111111"), Color.parseColor("#444444"), Color.parseColor("#2C2C2C"), Color.parseColor("#444444"), Color.parseColor("#2A2A2A"), Color.parseColor("#999999")),
+        ThemeConfig("graphite_dark", "Graphite", true, Color.parseColor("#101314"), Color.parseColor("#2F7A78"), Color.parseColor("#242A2D"), Color.parseColor("#9B6A3D"), Color.parseColor("#30383A"), Color.parseColor("#66D4C8")),
+        ThemeConfig("orchid_dark", "Orchid", true, Color.parseColor("#171216"), Color.parseColor("#9B5C8F"), Color.parseColor("#30252E"), Color.parseColor("#B45B63"), Color.parseColor("#3A2D37"), Color.parseColor("#F08AA0")),
+        ThemeConfig("ember_light", "Ember Light", false, Color.parseColor("#F5EDE5"), Color.parseColor("#C0542E"), Color.parseColor("#EAE0D4"), Color.parseColor("#C0542E"), Color.parseColor("#C8BAB0"), Color.parseColor("#C0542E")),
+        ThemeConfig("abyss_light", "Abyss Light", false, Color.parseColor("#E8EDF4"), Color.parseColor("#2563EB"), Color.parseColor("#D5DFEE"), Color.parseColor("#2563EB"), Color.parseColor("#C8D4E4"), Color.parseColor("#2563EB")),
+        ThemeConfig("moss_light", "Moss Light", false, Color.parseColor("#E4EFE4"), Color.parseColor("#2D7A4F"), Color.parseColor("#D0E8D0"), Color.parseColor("#2D7A4F"), Color.parseColor("#B8D0B8"), Color.parseColor("#2D7A4F")),
+        ThemeConfig("onyx_light", "Onyx Light", false, Color.parseColor("#E8E8E8"), Color.parseColor("#444444"), Color.parseColor("#D8D8D8"), Color.parseColor("#444444"), Color.parseColor("#CCCCCC"), Color.parseColor("#555555")),
+        ThemeConfig("graphite_light", "Graphite Light", false, Color.parseColor("#F2F4F1"), Color.parseColor("#2F7A78"), Color.parseColor("#DDE5E1"), Color.parseColor("#9B6A3D"), Color.parseColor("#BCC9C5"), Color.parseColor("#2F7A78")),
+        ThemeConfig("orchid_light", "Orchid Light", false, Color.parseColor("#F5EEF3"), Color.parseColor("#9B5C8F"), Color.parseColor("#E7D7E2"), Color.parseColor("#B45B63"), Color.parseColor("#D8C3D2"), Color.parseColor("#9B5C8F")),
     )
 
     private var selectedThemeId = "ember_dark"
@@ -57,15 +66,12 @@ class ThemeActivity : BaseActivity() {
             findViewById<android.widget.ImageView>(R.id.ivBack)?.setColorFilter(tc.aiText)
         }
         findViewById<TextView>(R.id.tvCurrentTheme)?.setTextColor(tc.aiText)
+        findViewById<TextView>(R.id.tvDarkThemes)?.setTextColor(tc.aiText)
+        findViewById<TextView>(R.id.tvLightThemes)?.setTextColor(tc.aiText)
 
         selectedThemeId = KVUtils.getString("THEME_ID", "ember_dark")
 
-        val viewIds = listOf(R.id.themeEmberDark, R.id.themeEmberLight)
-        // Hide other theme previews
-        listOf(R.id.themeAbyssDark, R.id.themeMossDark, R.id.themeOnyxDark,
-               R.id.themeAbyssLight, R.id.themeMossLight, R.id.themeOnyxLight).forEach {
-            findViewById<View>(it)?.visibility = View.GONE
-        }
+        val viewIds = themeViewIds()
 
         themes.forEachIndexed { index, theme ->
             val view = findViewById<View>(viewIds[index])
@@ -87,7 +93,7 @@ class ThemeActivity : BaseActivity() {
         // Card background
         val cardBg = GradientDrawable().apply {
             setColor(theme.bg)
-            cornerRadius = dp(12f)
+            cornerRadius = dp(8f)
         }
         card.background = cardBg
 
@@ -109,6 +115,7 @@ class ThemeActivity : BaseActivity() {
         }
 
         name.text = theme.name
+        name.setTextColor(if (theme.isDark) Color.parseColor("#D8D8D8") else Color.parseColor("#4A4A4A"))
 
         view.setOnClickListener {
             selectedThemeId = theme.id
@@ -133,7 +140,7 @@ class ThemeActivity : BaseActivity() {
     }
 
     private fun updateSelection() {
-        val allViews = listOf(R.id.themeEmberDark, R.id.themeEmberLight)
+        val allViews = themeViewIds()
 
         themes.forEachIndexed { index, theme ->
             val view = findViewById<View>(allViews[index])
@@ -152,6 +159,21 @@ class ThemeActivity : BaseActivity() {
         val label = current?.name ?: selectedThemeId
         findViewById<TextView>(R.id.tvCurrentTheme).text = "Current: $label"
     }
+
+    private fun themeViewIds(): List<Int> = listOf(
+        R.id.themeEmberDark,
+        R.id.themeAbyssDark,
+        R.id.themeMossDark,
+        R.id.themeOnyxDark,
+        R.id.themeGraphiteDark,
+        R.id.themeOrchidDark,
+        R.id.themeEmberLight,
+        R.id.themeAbyssLight,
+        R.id.themeMossLight,
+        R.id.themeOnyxLight,
+        R.id.themeGraphiteLight,
+        R.id.themeOrchidLight,
+    )
 
     private fun roundRect(color: Int, radius: Float) = GradientDrawable().apply {
         setColor(color)
