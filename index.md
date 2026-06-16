@@ -1,3 +1,4 @@
+
 # PokeClaw Tweaked Build - by Noelle
 ## Why:
 I installed the app to automate some tasks, and found it quite lacking in features. i built this to be able to add those needed features and patch some bugs i find too.
@@ -11,4 +12,4 @@ I installed the app to automate some tasks, and found it quite lacking in featur
 Download the .apk from the repo, sideload or install it on your android device. The apk will be located in the latest release.
 
 
-## DOCS: https://wester4253.github.io/PokeClaw-addskills/DOCS
+## DOCS:  [Right here](https://wester4253.github.io/PokeClaw-addskills/DOCS)
