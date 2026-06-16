@@ -7,6 +7,8 @@ import io.agents.pokeclaw.utils.XLog;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dev.langchain4j.http.client.HttpClient;
@@ -39,6 +41,8 @@ public class OkHttpClientBuilderAdapter implements HttpClientBuilder {
     /** Whether to print the request body to logcat (off by default; LLM request bodies are large and repetitive) */
     private boolean logRequestBody = false;
 
+    private final Map<String, String> defaultHeaders = new LinkedHashMap<>();
+
     public OkHttpClientBuilderAdapter() {
     }
 
@@ -50,6 +54,13 @@ public class OkHttpClientBuilderAdapter implements HttpClientBuilder {
 
     public OkHttpClientBuilderAdapter setLogRequestBody(boolean enabled) {
         this.logRequestBody = enabled;
+        return this;
+    }
+
+    public OkHttpClientBuilderAdapter addDefaultHeader(String name, String value) {
+        if (name != null && !name.isEmpty() && value != null && !value.isEmpty()) {
+            defaultHeaders.put(name, value);
+        }
         return this;
     }
 
@@ -78,6 +89,21 @@ public class OkHttpClientBuilderAdapter implements HttpClientBuilder {
     @Override
     public HttpClient build() {
         final boolean logReqBody = this.logRequestBody;
+        final Map<String, String> headers = new LinkedHashMap<>(this.defaultHeaders);
+
+        Interceptor defaultHeaderInterceptor = chain -> {
+            Request request = chain.request();
+            if (headers.isEmpty()) {
+                return chain.proceed(request);
+            }
+            Request.Builder requestBuilder = request.newBuilder();
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                if (request.header(entry.getKey()) == null) {
+                    requestBuilder.addHeader(entry.getKey(), entry.getValue());
+                }
+            }
+            return chain.proceed(requestBuilder.build());
+        };
 
         // Custom interceptor: always print response; request body controlled by logRequestBody flag
         Interceptor llmLoggingInterceptor = chain -> {
@@ -129,6 +155,7 @@ public class OkHttpClientBuilderAdapter implements HttpClientBuilder {
                 .connectTimeout(connectTimeout.toMillis(), TimeUnit.MILLISECONDS)
                 .readTimeout(readTimeout.toMillis(), TimeUnit.MILLISECONDS)
                 .writeTimeout(readTimeout.toMillis(), TimeUnit.MILLISECONDS)
+                .addInterceptor(defaultHeaderInterceptor)
                 .addInterceptor(llmLoggingInterceptor);
 
         if (fileLoggingEnabled && cacheDir != null) {

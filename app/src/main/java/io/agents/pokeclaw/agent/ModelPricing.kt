@@ -7,7 +7,7 @@ package io.agents.pokeclaw.agent
  * Model pricing table and cost estimation.
  *
  * Prices are in USD per 1 million tokens.
- * Source: official provider pricing pages as of 2026-04.
+ * Source: official provider pricing pages as of 2026-06.
  */
 object ModelPricing {
 
@@ -23,6 +23,7 @@ object ModelPricing {
         "gpt-4.1" to Price(2.00, 8.00),
         "gpt-4.1-mini" to Price(0.40, 1.60),
         "gpt-4.1-nano" to Price(0.10, 0.40),
+        "gpt-5.2" to Price(1.75, 14.00),
         "gpt-4-turbo" to Price(10.00, 30.00),
         "gpt-3.5-turbo" to Price(0.50, 1.50),
         "o4-mini" to Price(1.10, 4.40),
@@ -30,6 +31,7 @@ object ModelPricing {
         // Anthropic
         "claude-opus-4-6" to Price(15.00, 75.00),
         "claude-sonnet-4-6" to Price(3.00, 15.00),
+        "claude-sonnet-4.6" to Price(3.00, 15.00),
         "claude-haiku-4-5" to Price(0.80, 4.00),
 
         // Google
@@ -43,6 +45,7 @@ object ModelPricing {
         "deepseek-chat" to Price(0.27, 1.10),
         "deepseek-reasoner" to Price(0.55, 2.19),
         "qwen-2.5-72b" to Price(0.29, 0.39),
+        "qwen3.7-plus" to Price(0.32, 1.28),
     )
 
     /**

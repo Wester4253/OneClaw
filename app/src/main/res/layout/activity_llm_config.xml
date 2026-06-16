@@ -393,7 +393,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:background="@drawable/bg_edit_text"
-                            android:hint="https://api.openrouter.ai/v1"
+                            android:hint="https://openrouter.ai/api/v1"
                             android:inputType="textUri"
                             android:paddingHorizontal="12dp"
                             android:textColor="@color/colorTextPrimary"

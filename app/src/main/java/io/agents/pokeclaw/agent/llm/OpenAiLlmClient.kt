@@ -4,6 +4,7 @@
 package io.agents.pokeclaw.agent.llm
 
 import io.agents.pokeclaw.agent.AgentConfig
+import io.agents.pokeclaw.agent.LlmProvider
 import io.agents.pokeclaw.agent.langchain.http.OkHttpClientBuilderAdapter
 import dev.langchain4j.agent.tool.ToolSpecification
 import dev.langchain4j.data.message.ChatMessage
@@ -26,9 +27,20 @@ class OpenAiLlmClient(
     private val chatModel: ChatModel by lazy { buildChatModel() }
     private val streamingChatModel: StreamingChatModel by lazy { buildStreamingChatModel() }
 
+    private fun effectiveHttpClientBuilder(): OkHttpClientBuilderAdapter {
+        return if (
+            config.provider == LlmProvider.OPENROUTER ||
+            OpenRouterHeaders.isOpenRouterBaseUrl(config.baseUrl)
+        ) {
+            OpenRouterHeaders.applyTo(httpClientBuilder)
+        } else {
+            httpClientBuilder
+        }
+    }
+
     private fun buildChatModel(): ChatModel {
         val builder = OpenAiChatModel.builder()
-            .httpClientBuilder(httpClientBuilder)
+            .httpClientBuilder(effectiveHttpClientBuilder())
             .apiKey(config.apiKey.ifEmpty { "ollama" })
             .modelName(config.modelName)
             .temperature(config.temperature)
@@ -40,7 +52,7 @@ class OpenAiLlmClient(
 
     private fun buildStreamingChatModel(): StreamingChatModel {
         val builder = OpenAiStreamingChatModel.builder()
-            .httpClientBuilder(httpClientBuilder)
+            .httpClientBuilder(effectiveHttpClientBuilder())
             .apiKey(config.apiKey.ifEmpty { "ollama" })
             .modelName(config.modelName)
             .temperature(config.temperature)

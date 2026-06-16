@@ -9,6 +9,7 @@ import dev.langchain4j.data.message.UserMessage
 import dev.langchain4j.model.anthropic.AnthropicChatModel
 import dev.langchain4j.model.chat.request.ChatRequest
 import dev.langchain4j.model.openai.OpenAiChatModel
+import io.agents.pokeclaw.agent.LlmProvider
 import io.agents.pokeclaw.agent.langchain.http.OkHttpClientBuilderAdapter
 import io.agents.pokeclaw.utils.XLog
 
@@ -44,7 +45,7 @@ object LlmSessionManager {
 
         XLog.d(TAG, "createCloudChatModel: provider=${cloud.providerName}, model=${cloud.modelName}, baseUrl=${cloud.resolvedBaseUrl}")
         return when (cloud.agentProvider) {
-            io.agents.pokeclaw.agent.LlmProvider.ANTHROPIC -> AnthropicChatModel.builder()
+            LlmProvider.ANTHROPIC -> AnthropicChatModel.builder()
                 .httpClientBuilder(OkHttpClientBuilderAdapter())
                 .apiKey(cloud.apiKey)
                 .modelName(cloud.modelName)
@@ -53,12 +54,21 @@ object LlmSessionManager {
                 .build()
 
             else -> OpenAiChatModel.builder()
-                .httpClientBuilder(OkHttpClientBuilderAdapter())
+                .httpClientBuilder(openAiHttpClientBuilder(cloud.agentProvider, cloud.resolvedBaseUrl))
                 .apiKey(cloud.apiKey)
                 .modelName(cloud.modelName.ifEmpty { "gpt-4o-mini" })
                 .baseUrl(cloud.resolvedBaseUrl.ifEmpty { "https://api.openai.com/v1" })
                 .temperature(temperature)
                 .build()
+        }
+    }
+
+    private fun openAiHttpClientBuilder(provider: LlmProvider, baseUrl: String): OkHttpClientBuilderAdapter {
+        val builder = OkHttpClientBuilderAdapter()
+        return if (provider == LlmProvider.OPENROUTER || OpenRouterHeaders.isOpenRouterBaseUrl(baseUrl)) {
+            OpenRouterHeaders.applyTo(builder)
+        } else {
+            builder
         }
     }
 

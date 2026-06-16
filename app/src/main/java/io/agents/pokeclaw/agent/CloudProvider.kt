@@ -58,6 +58,17 @@ enum class CloudProvider(
             CloudModel("gemini-2.5-pro", "Gemini 2.5 Pro", 1.25, 10.00, ModelTier.PRO, 1_000_000),
         )
     ),
+    OPENROUTER(
+        displayName = "OpenRouter",
+        defaultBaseUrl = "https://openrouter.ai/api/v1",
+        models = listOf(
+            CloudModel("google/gemini-2.5-flash", "Gemini 2.5 Flash", 0.30, 2.50, ModelTier.FAST, 1_000_000, recommended = true),
+            CloudModel("google/gemini-2.5-pro", "Gemini 2.5 Pro", 1.25, 10.00, ModelTier.PRO, 1_000_000),
+            CloudModel("anthropic/claude-sonnet-4.6", "Claude Sonnet 4.6", 3.00, 15.00, ModelTier.PRO, 200_000),
+            CloudModel("openai/gpt-5.2", "GPT-5.2", 1.75, 14.00, ModelTier.PRO, 400_000),
+            CloudModel("qwen/qwen3.7-plus", "Qwen3.7 Plus", 0.32, 1.28, ModelTier.FAST, 1_000_000),
+        )
+    ),
     CUSTOM(
         displayName = "Custom",
         defaultBaseUrl = "",

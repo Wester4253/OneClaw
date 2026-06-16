@@ -514,18 +514,29 @@ private fun ChatTopBar(
                 onDismissRequest = { showModelMenu = false },
             ) {
                 val kvUtils = io.agents.pokeclaw.utils.KVUtils
-                val apiKey = kvUtils.getLlmApiKey()
-                val baseUrl = kvUtils.getLlmBaseUrl()
-                val currentModel = kvUtils.getLlmModelName()
+                val cloudProvider = io.agents.pokeclaw.agent.CloudProvider.fromName(
+                    kvUtils.getDefaultCloudProvider().ifBlank { kvUtils.getLlmProvider() }
+                )
+                val apiKey = kvUtils.getApiKeyForProvider(cloudProvider.name).ifEmpty { kvUtils.getLlmApiKey() }
+                val currentModel = kvUtils.getDefaultCloudModel().ifBlank { kvUtils.getLlmModelName() }
 
                 if (selectedTab == "cloud") {
                     // Cloud models: from configured provider
                     if (apiKey.isNotEmpty()) {
-                        val activeProvider = io.agents.pokeclaw.agent.CloudProvider.entries.find {
-                            it.defaultBaseUrl == baseUrl
+                        val modelsToShow = cloudProvider.models.ifEmpty {
+                            currentModel.takeIf { it.isNotEmpty() }?.let { modelId ->
+                                listOf(
+                                    io.agents.pokeclaw.agent.CloudModel(
+                                        id = modelId,
+                                        displayName = modelId,
+                                        inputPricePerM = 0.0,
+                                        outputPricePerM = 0.0,
+                                        tier = io.agents.pokeclaw.agent.ModelTier.FAST,
+                                        contextSize = 0
+                                    )
+                                )
+                            } ?: emptyList()
                         }
-                        val modelsToShow = activeProvider?.models
-                            ?: io.agents.pokeclaw.agent.CloudProvider.OPENAI.models
                         modelsToShow.forEach { model ->
                             DropdownMenuItem(
                                 text = {

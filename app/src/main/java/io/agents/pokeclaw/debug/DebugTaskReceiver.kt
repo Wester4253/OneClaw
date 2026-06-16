@@ -32,7 +32,7 @@ import org.json.JSONObject
  *
  * With custom base URL (OpenRouter, Groq, Ollama, etc.):
  *   adb shell am broadcast -a io.agents.pokeclaw.DEBUG_TASK --es task "config:" \
- *     --es api_key "sk-..." --es base_url "https://api.openrouter.ai/v1" --es model_name "google/gemini-2.5-flash"
+ *     --es api_key "sk-..." --es provider "OPENROUTER" --es model_name "google/gemini-2.5-flash"
  */
 class DebugTaskReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -79,7 +79,9 @@ class DebugTaskReceiver : BroadcastReceiver() {
                 val apiKey = intent.getStringExtra("api_key")
                 val baseUrl = intent.getStringExtra("base_url")
                 val modelName = intent.getStringExtra("model_name")
-                val provider = intent.getStringExtra("provider") ?: "OPENAI"
+                val provider = intent.getStringExtra("provider")
+                    ?: io.agents.pokeclaw.agent.CloudProvider.findProviderForModel(modelName ?: "")?.name
+                    ?: "OPENAI"
                 if (provider == "LOCAL") {
                     // For local LLM, base_url = model file path
                     if (baseUrl != null) {
@@ -92,9 +94,10 @@ class DebugTaskReceiver : BroadcastReceiver() {
                     }
                 } else {
                     // For cloud LLM
-                    val resolvedBaseUrl = baseUrl
-                        ?: io.agents.pokeclaw.agent.CloudProvider.findProviderForModel(modelName ?: "")?.defaultBaseUrl
-                        ?: "https://api.openai.com/v1"
+                    val providerBaseUrl = io.agents.pokeclaw.agent.CloudProvider
+                        .fromName(provider)
+                        .defaultBaseUrl
+                    val resolvedBaseUrl = baseUrl ?: providerBaseUrl.ifBlank { "https://api.openai.com/v1" }
                     ModelConfigRepository.saveCloudDefault(
                         providerName = provider,
                         modelId = modelName ?: "",
