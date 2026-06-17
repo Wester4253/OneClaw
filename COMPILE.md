@@ -1,4 +1,4 @@
-# Compile PokeClaw
+# Compile OneClaw
 
 ## Debug build
 
@@ -7,7 +7,7 @@
 3. Run:
 
 ```bash
-ANDROID_HOME=/home/wstr/Android/Sdk ./gradlew :app:assembleDebug
+ANDROID_HOME=$HOME/Android/Sdk ./gradlew :app:assembleDebug
 ```
 
 4. Find the APK in:
@@ -28,7 +28,7 @@ app/build/outputs/apk/debug/
 4. Run:
 
 ```bash
-ANDROID_HOME=/home/wstr/Android/Sdk ./gradlew :app:assembleRelease
+ANDROID_HOME=$HOME/Android/Sdk ./gradlew :app:assembleRelease
 ```
 
 5. Find the signed APK in:
@@ -40,4 +40,4 @@ app/build/outputs/apk/release/
 ## Notes
 
 - `local.properties` is not committed.
-- If Gradle cannot find the Android SDK, set `sdk.dir` in `local.properties` or use `ANDROID_HOME=/home/wstr/Android/Sdk`.
+- If Gradle cannot find the Android SDK, set `sdk.dir` in `local.properties` or use `ANDROID_HOME=$HOME/Android/Sdk`.
