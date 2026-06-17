@@ -31,5 +31,5 @@ Download the .apk from the repo, sideload or install it on your android device. 
 - More polished UI
 
 ---
-
+<h2>MORE INFO:</h2>
 [Docs](https://wester4253.github.io/OneClaw/DOCS)
