@@ -56,9 +56,9 @@ android {
         targetSdk = 36
         versionCode = readLocalOrEnvString("ONECLAW_VERSION_CODE").toIntOrNull()
             ?: readLocalOrEnvString("POKECLAW_VERSION_CODE").toIntOrNull()
-            ?: 30
+            ?: 32
         versionName = readLocalOrEnvString("ONECLAW_VERSION_NAME")
-            .ifBlank { readLocalOrEnvString("POKECLAW_VERSION_NAME", "0.8") }
+            .ifBlank { readLocalOrEnvString("POKECLAW_VERSION_NAME", "0.8.4") }
         buildConfigField("String", "VERSION_INFO", getVersionGit())
         buildConfigField("String", "APP_ORIGIN", "\"OneClaw by westr42 | based on agents-io/PokeClaw\"")
         buildConfigField("String", "BUILD_FINGERPRINT", "\"${getBuildFingerprint()}\"")

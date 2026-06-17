@@ -409,27 +409,17 @@ private fun ChatTopBar(
 
         TopAppBar(
             title = {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    androidx.compose.foundation.Image(
-                        painter = painterResource(R.drawable.oneclaw_icon_small),
-                        contentDescription = stringResource(R.string.cd_app_logo),
-                        modifier = Modifier.size(28.dp),
-                    )
-                    Text(
-                        buildAnnotatedString {
-                            append("One")
-                            withStyle(SpanStyle(color = colors.accent)) {
-                                append("Claw")
-                            }
-                        },
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = colors.textPrimary,
-                    )
-                }
+                Text(
+                    buildAnnotatedString {
+                        append("One")
+                        withStyle(SpanStyle(color = colors.accent)) {
+                            append("Claw")
+                        }
+                    },
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 23.sp,
+                    color = colors.textPrimary,
+                )
             },
             navigationIcon = {
                 IconButton(onClick = onMenuClick) {
@@ -440,9 +430,9 @@ private fun ChatTopBar(
                 // Local/Cloud toggle — two plain buttons, no container
                 Surface(
                     onClick = { onTabChange("local") },
-                    shape = RoundedCornerShape(10.dp),
-                    color = if (selectedTab == "local") colors.aiBubble else Color.Transparent,
-                    border = if (selectedTab == "local") androidx.compose.foundation.BorderStroke(1.dp, colors.aiBubbleBorder) else null,
+                    shape = RoundedCornerShape(14.dp),
+                    color = if (selectedTab == "local") colors.accent.copy(alpha = 0.13f) else Color.Transparent,
+                    border = if (selectedTab == "local") androidx.compose.foundation.BorderStroke(1.dp, colors.accent.copy(alpha = 0.36f)) else null,
                 ) {
                     Text(
                         "Local",
@@ -454,9 +444,9 @@ private fun ChatTopBar(
                 Spacer(Modifier.width(4.dp))
                 Surface(
                     onClick = { onTabChange("cloud") },
-                    shape = RoundedCornerShape(10.dp),
-                    color = if (selectedTab == "cloud") colors.aiBubble else Color.Transparent,
-                    border = if (selectedTab == "cloud") androidx.compose.foundation.BorderStroke(1.dp, colors.aiBubbleBorder) else null,
+                    shape = RoundedCornerShape(14.dp),
+                    color = if (selectedTab == "cloud") colors.accent.copy(alpha = 0.13f) else Color.Transparent,
+                    border = if (selectedTab == "cloud") androidx.compose.foundation.BorderStroke(1.dp, colors.accent.copy(alpha = 0.36f)) else null,
                 ) {
                     Text(
                         "Cloud",
@@ -470,7 +460,7 @@ private fun ChatTopBar(
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = colors.surface,
+                containerColor = colors.surface.copy(alpha = 0.92f),
                 titleContentColor = colors.textPrimary,
                 navigationIconContentColor = colors.textPrimary,
                 actionIconContentColor = colors.textSecondary,
@@ -482,9 +472,9 @@ private fun ChatTopBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(colors.surface)
+                .background(colors.surface.copy(alpha = 0.86f))
                 .clickable { showModelMenu = true }
-                .padding(horizontal = 16.dp, vertical = 4.dp),
+                .padding(horizontal = 16.dp, vertical = 6.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
@@ -1320,14 +1310,21 @@ private fun EmptyStateWithPrompts(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(40.dp))
-        androidx.compose.foundation.Image(
-            painter = painterResource(R.drawable.oneclaw_avatar),
-            contentDescription = "OneClaw",
-            modifier = Modifier
-                .size(48.dp)
-                .clip(RoundedCornerShape(12.dp)),
-        )
-        Spacer(Modifier.height(6.dp))
+        Surface(
+            shape = RoundedCornerShape(22.dp),
+            color = colors.surface.copy(alpha = 0.68f),
+            border = androidx.compose.foundation.BorderStroke(1.dp, colors.aiBubbleBorder.copy(alpha = 0.62f)),
+            shadowElevation = 3.dp,
+        ) {
+            androidx.compose.foundation.Image(
+                painter = painterResource(R.drawable.oneclaw_avatar),
+                contentDescription = "OneClaw",
+                modifier = Modifier
+                    .size(72.dp)
+                    .padding(12.dp),
+            )
+        }
+        Spacer(Modifier.height(9.dp))
         Text(
             "OneClaw",
             fontSize = 16.sp,
@@ -1382,9 +1379,10 @@ private fun EmptyStateWithPrompts(
             prompts.forEach { prompt ->
                 val barAlpha = if (prompt.isTask) 1f else 0.5f
                 Surface(
-                    shape = RoundedCornerShape(9.dp),
-                    color = colors.background,
-                    border = androidx.compose.foundation.BorderStroke(0.5.dp, colors.inputBorder),
+                    shape = RoundedCornerShape(14.dp),
+                    color = colors.surface.copy(alpha = 0.48f),
+                    border = androidx.compose.foundation.BorderStroke(0.5.dp, colors.inputBorder.copy(alpha = 0.72f)),
+                    shadowElevation = 1.dp,
                 ) {
                     Row(
                         modifier = Modifier
@@ -1395,10 +1393,10 @@ private fun EmptyStateWithPrompts(
                         Box(
                             modifier = Modifier
                                 .width(3.dp)
-                                .height(38.dp)
+                                .height(42.dp)
                                 .background(
                                     colors.accent.copy(alpha = barAlpha),
-                                    RoundedCornerShape(topStart = 9.dp, bottomStart = 9.dp),
+                                    RoundedCornerShape(topStart = 14.dp, bottomStart = 14.dp),
                                 ),
                         )
                         Text(

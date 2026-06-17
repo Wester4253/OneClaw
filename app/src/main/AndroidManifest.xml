@@ -71,6 +71,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name="io.agents.pokeclaw.ui.settings.ToolsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="io.agents.pokeclaw.ui.settings.SettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

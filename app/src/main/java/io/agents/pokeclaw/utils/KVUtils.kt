@@ -170,6 +170,33 @@ object KVUtils {
     fun isExternalAutomationEnabled(): Boolean = getBoolean(KEY_EXTERNAL_AUTOMATION_ENABLED, false)
     fun setExternalAutomationEnabled(enabled: Boolean) = putBoolean(KEY_EXTERNAL_AUTOMATION_ENABLED, enabled)
 
+    // ==================== Tool Management ====================
+    private const val KEY_DISABLED_TOOLS = "KEY_DISABLED_TOOLS"
+
+    fun getDisabledTools(): Set<String> {
+        return getString(KEY_DISABLED_TOOLS, "")
+            .split('\n')
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .toSet()
+    }
+
+    fun isToolEnabled(name: String): Boolean = name !in getDisabledTools()
+
+    fun setToolEnabled(name: String, enabled: Boolean) {
+        val disabled = getDisabledTools().toMutableSet()
+        if (enabled) {
+            disabled.remove(name)
+        } else {
+            disabled.add(name)
+        }
+        putString(KEY_DISABLED_TOOLS, disabled.sorted().joinToString("\n"))
+    }
+
+    fun setAllToolsEnabled() {
+        putString(KEY_DISABLED_TOOLS, "")
+    }
+
     private const val KEY_PENDING_ACCESSIBILITY_RETURN = "KEY_PENDING_ACCESSIBILITY_RETURN"
     private const val KEY_PENDING_ACCESSIBILITY_RETURN_AT = "KEY_PENDING_ACCESSIBILITY_RETURN_AT"
     private const val KEY_PENDING_NOTIFICATION_ACCESS_RETURN = "KEY_PENDING_NOTIFICATION_ACCESS_RETURN"

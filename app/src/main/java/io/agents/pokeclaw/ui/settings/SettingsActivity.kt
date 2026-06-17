@@ -470,12 +470,12 @@ class SettingsActivity : BaseActivity() {
             leadingIcon = android.R.drawable.ic_menu_manage,
             title = "Manage Tools",
             onClick = {
-                val count = io.agents.pokeclaw.tool.ToolRegistry.getInstance().getAllTools().size
-                Toast.makeText(this, "$count tools enabled. Tool management coming soon.", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, ToolsActivity::class.java))
             },
             showDivider = false
         ).apply {
-            setTrailingText("${io.agents.pokeclaw.tool.ToolRegistry.getInstance().getAllTools().size} enabled")
+            val registry = io.agents.pokeclaw.tool.ToolRegistry.getInstance()
+            setTrailingText("${registry.getAllTools().size}/${registry.getAllRegisteredTools().size} enabled")
         }
 
         // Remote Control

@@ -7,12 +7,14 @@ import io.agents.pokeclaw.agent.knowledge.*
 import io.agents.pokeclaw.tool.impl.*
 import io.agents.pokeclaw.tool.impl.mobile.*
 import io.agents.pokeclaw.tool.impl.tv.*
+import io.agents.pokeclaw.utils.KVUtils
 
 object ToolRegistry {
 
     enum class DeviceType { TV, MOBILE }
 
     private val tools = LinkedHashMap<String, BaseTool>()
+    private val requiredTools = setOf("finish", "get_screen_info", "wait")
     var deviceType: DeviceType = DeviceType.TV
         private set
 
@@ -80,14 +82,35 @@ object ToolRegistry {
         tools[tool.getName()] = tool
     }
 
-    fun getTool(name: String): BaseTool? = tools[name]
+    fun getTool(name: String): BaseTool? = tools[name]?.takeIf { isToolEnabled(name) }
 
     fun getDisplayName(name: String): String = tools[name]?.getDisplayName() ?: name
 
-    fun getAllTools(): List<BaseTool> = tools.values.toList()
+    fun getAllTools(): List<BaseTool> = tools.values.filter { isToolEnabled(it.getName()) }
+
+    fun getAllRegisteredTools(): List<BaseTool> = tools.values.toList()
+
+    fun isRequiredTool(name: String): Boolean = name in requiredTools
+
+    fun isToolEnabled(name: String): Boolean {
+        return isRequiredTool(name) || KVUtils.isToolEnabled(name)
+    }
+
+    fun setToolEnabled(name: String, enabled: Boolean) {
+        if (!isRequiredTool(name)) {
+            KVUtils.setToolEnabled(name, enabled)
+        }
+    }
+
+    fun enableAllTools() {
+        KVUtils.setAllToolsEnabled()
+    }
 
     fun executeTool(name: String, params: Map<String, Any>): ToolResult {
         val tool = tools[name] ?: return ToolResult.error("Unknown tool: $name")
+        if (!isToolEnabled(name)) {
+            return ToolResult.error("Tool disabled in Settings: ${tool.getDisplayName()}")
+        }
         return try {
             tool.executeWithWaitAfter(params)
         } catch (e: Exception) {

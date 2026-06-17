@@ -13,6 +13,7 @@ local.properties
 /.idea/
 *.mp4
 !docs/*.mp4
+*.apk
 
 # Build fingerprint (auto-generated)
 app/src/main/assets/.pcfp

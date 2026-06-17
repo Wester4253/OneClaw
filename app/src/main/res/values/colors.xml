@@ -60,6 +60,7 @@
     <color name="colorBrandVariant">#FF7E7DB2</color>
     <color name="colorBrandOnVariant">#FFE5E4FF</color>
     <color name="colorBrandLowButtonBg">#FFE5E4FF</color>
+    <color name="colorLauncherBackground">#FF0C0A0A</color>
 
     <!-- Error -->
     <color name="colorErrorPrimary">#FFF6685D</color>

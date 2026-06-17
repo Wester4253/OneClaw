@@ -33,11 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            app:cardBackgroundColor="@color/colorBgPrimary"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/colorContainerLow"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/colorBorderHigh">
+            app:strokeColor="@color/colorBorderBase">
 
             <LinearLayout
                 android:id="@+id/itemsContainer"
