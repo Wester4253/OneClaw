@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent
@@ -12,7 +12,7 @@ import java.util.ArrayDeque
  * Architecture reference:
  * - Sliding window (8 steps), same-action, screen-unchanged, high-repetition
  * - ralph-claude-code: repeated-error detection
- * - PokeClaw original: screen diff (previousScreenTexts)
+ * - OneClaw original: screen diff (previousScreenTexts)
  *
  * Recovery is 3-level:
  *   Level 1: Inject recovery hint into prompt

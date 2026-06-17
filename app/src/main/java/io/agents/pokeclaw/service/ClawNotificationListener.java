@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.service;
@@ -30,7 +30,7 @@ import java.util.HashSet;
  * Also provides cancelNotification() to dismiss notifications after replying,
  * ensuring the next message triggers a fresh notification event.
  *
- * Requires: Settings → Notification Access → PokeClaw enabled.
+ * Requires: Settings → Notification Access → OneClaw enabled.
  */
 public class ClawNotificationListener extends NotificationListenerService {
 

@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.chat
@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper
  * - conversations: id, title, created, model, file_path, message_count
  * - messages: id, conversation_id, role, content, timestamp
  */
-class ChatDatabase(context: Context) : SQLiteOpenHelper(context, "pokeclaw.db", null, 1) {
+class ChatDatabase(context: Context) : SQLiteOpenHelper(context, "oneclaw.db", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("""

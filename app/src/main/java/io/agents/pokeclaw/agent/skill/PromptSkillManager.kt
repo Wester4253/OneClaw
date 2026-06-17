@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent.skill
@@ -100,7 +100,7 @@ object PromptSkillManager {
                 append("- Source: ${selected.source}\n")
                 if (selected.allowedTools.isNotEmpty()) {
                     append("- Allowed tools requested by skill: ${selected.allowedTools.joinToString(", ")}\n")
-                    append("Prefer those tools while following this skill when equivalent PokeClaw tools exist.\n")
+                    append("Prefer those tools while following this skill when equivalent OneClaw tools exist.\n")
                 }
                 append("\nFollow this skill's Markdown instructions for the current request:\n\n")
                 append(selected.body.take(MAX_ACTIVE_SKILL_CHARS))
@@ -209,7 +209,7 @@ object PromptSkillManager {
         context.getExternalFilesDir(null)?.let { dirs.add(File(it, "skills")) }
         context.filesDir?.let { dirs.add(File(it, "skills")) }
         @Suppress("DEPRECATION")
-        dirs.add(File(Environment.getExternalStorageDirectory(), "PokeClaw/skills"))
+        dirs.add(File(Environment.getExternalStorageDirectory(), "OneClaw/skills"))
         return dirs.distinctBy { it.absolutePath }
     }
 
@@ -262,7 +262,7 @@ object PromptSkillManager {
         if (knownTools.isEmpty()) return
         val unknown = tools.filterNot { it in knownTools }
         if (unknown.isNotEmpty()) {
-            XLog.w(TAG, "Skill $skillId references unknown/non-PokeClaw tools: ${unknown.joinToString(", ")}")
+            XLog.w(TAG, "Skill $skillId references unknown/non-OneClaw tools: ${unknown.joinToString(", ")}")
         }
     }
 

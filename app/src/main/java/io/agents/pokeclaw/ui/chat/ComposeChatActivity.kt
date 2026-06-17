@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.chat
@@ -27,7 +27,7 @@ import io.agents.pokeclaw.utils.XLog
 import java.util.concurrent.Executors
 
 /**
- * PokeClaw Chat Activity — Compose shell for the chat screen.
+ * OneClaw Chat Activity — Compose shell for the chat screen.
  *
  * Chat runtime ownership lives in [ChatSessionController].
  * This activity keeps lifecycle wiring, task flows, and sidebar/history UI state.
@@ -233,7 +233,7 @@ class ComposeChatActivity : ComponentActivity() {
         }
 
         // Debug: auto-trigger task from ADB intent
-        // Usage: adb shell am start -n io.agents.pokeclaw/.ui.chat.ComposeChatActivity --es task "open my camera"
+        // Usage: adb shell am start -n xyz.westr42.oneclaw/io.agents.pokeclaw.ui.chat.ComposeChatActivity --es task "open my camera"
         handleIntentAutomation(intent, initialDelayMs = 2000)
 
     }

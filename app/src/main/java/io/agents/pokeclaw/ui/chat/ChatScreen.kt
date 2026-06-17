@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.chat
@@ -66,7 +66,7 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * PokeClaw Chat Screen — Jetpack Compose
+ * OneClaw Chat Screen — Jetpack Compose
  * Inspired by WhatsApp/Telegram/Slack dark theme
  */
 
@@ -409,17 +409,27 @@ private fun ChatTopBar(
 
         TopAppBar(
             title = {
-                Text(
-                    buildAnnotatedString {
-                        append("Poke")
-                        withStyle(SpanStyle(color = colors.accent)) {
-                            append("Claw")
-                        }
-                    },
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = colors.textPrimary,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    androidx.compose.foundation.Image(
+                        painter = painterResource(R.drawable.oneclaw_icon_small),
+                        contentDescription = stringResource(R.string.cd_app_logo),
+                        modifier = Modifier.size(28.dp),
+                    )
+                    Text(
+                        buildAnnotatedString {
+                            append("One")
+                            withStyle(SpanStyle(color = colors.accent)) {
+                                append("Claw")
+                            }
+                        },
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = colors.textPrimary,
+                    )
+                }
             },
             navigationIcon = {
                 IconButton(onClick = onMenuClick) {
@@ -727,8 +737,8 @@ private fun AssistantBubble(text: String, timestamp: Long, colors: PokeclawColor
         ) {
             // Avatar
             androidx.compose.foundation.Image(
-                painter = painterResource(R.drawable.pokeclaw_avatar),
-                contentDescription = "PokeClaw",
+                painter = painterResource(R.drawable.oneclaw_avatar),
+                contentDescription = "OneClaw",
                 modifier = Modifier
                     .size(32.dp)
                     .clip(CircleShape),
@@ -1235,8 +1245,8 @@ private fun DownloadOverlay(progress: Int, colors: PokeclawColors) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 androidx.compose.foundation.Image(
-                    painter = painterResource(R.drawable.pokeclaw_avatar),
-                    contentDescription = "PokeClaw",
+                    painter = painterResource(R.drawable.oneclaw_avatar),
+                    contentDescription = "OneClaw",
                     modifier = Modifier
                         .size(64.dp)
                         .clip(RoundedCornerShape(16.dp)),
@@ -1311,15 +1321,15 @@ private fun EmptyStateWithPrompts(
     ) {
         Spacer(Modifier.height(40.dp))
         androidx.compose.foundation.Image(
-            painter = painterResource(R.drawable.pokeclaw_avatar),
-            contentDescription = "PokeClaw",
+            painter = painterResource(R.drawable.oneclaw_avatar),
+            contentDescription = "OneClaw",
             modifier = Modifier
                 .size(48.dp)
                 .clip(RoundedCornerShape(12.dp)),
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            "PokeClaw",
+            "OneClaw",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = colors.textPrimary,
@@ -1419,7 +1429,7 @@ private fun QuickTasksPanel(
     // Cloud-only tasks at the top (multi-step, Siri/GA can't do these)
     // Cloud-only tasks (multi-step, Siri can't do)
     val cloudOnlyTasks = listOf(
-        "🦞 Open Reddit and search for pokeclaw",
+        "Search Reddit for OneClaw",
         "🎬 Search YouTube for funny cat fails",
         "📦 Install Telegram from Play Store",
         "🐦 Check what's trending on Twitter and tell me",
@@ -1722,7 +1732,7 @@ private fun SidebarContent(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             androidx.compose.foundation.Image(
-                painter = painterResource(R.drawable.pokeclaw_avatar),
+                painter = painterResource(R.drawable.oneclaw_avatar),
                 contentDescription = null,
                 modifier = Modifier
                     .size(28.dp)
@@ -1730,7 +1740,7 @@ private fun SidebarContent(
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                "PokeClaw",
+                "OneClaw",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = colors.textPrimary,

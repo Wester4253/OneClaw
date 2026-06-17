@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent
@@ -255,7 +255,7 @@ class DefaultAgentService : AgentService {
         val appName = try {
             val appInfo = app.packageManager.getApplicationInfo(app.packageName, 0)
             app.packageManager.getApplicationLabel(appInfo).toString()
-        } catch (_: Exception) { "PokeClaw" }
+        } catch (_: Exception) { "OneClaw" }
         sb.append("\n## This App Info\n")
         sb.append("- App Name: ").append(appName).append("\n")
         sb.append("- Package Name: ").append(app.packageName).append("\n")

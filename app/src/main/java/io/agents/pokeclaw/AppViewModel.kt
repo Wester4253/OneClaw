@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw
@@ -115,7 +115,7 @@ class AppViewModel : ViewModel() {
             ?: return
         wakeLock = pm.newWakeLock(
             PowerManager.SCREEN_DIM_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
-            "PokeClaw::ScreenWakeLock"
+            "OneClaw::ScreenWakeLock"
         ).apply {
             acquire(10 * 60 * 1000L) // 10 minute timeout to prevent battery drain
         }

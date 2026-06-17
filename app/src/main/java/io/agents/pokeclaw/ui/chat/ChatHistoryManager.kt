@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.chat
@@ -12,7 +12,7 @@ import java.util.Locale
 /**
  * Saves and loads chat conversations as markdown files.
  *
- * Storage: /storage/emulated/0/PokeClaw/chats/
+ * Storage: /storage/emulated/0/OneClaw/chats/
  * Format: 2026-04-04-send-hi-to-mom.md
  *
  * Each file:
@@ -33,7 +33,7 @@ import java.util.Locale
  */
 object ChatHistoryManager {
 
-    private const val MESSAGE_TIMESTAMP_PREFIX = "<!-- pokeclaw:timestamp="
+    private const val MESSAGE_TIMESTAMP_PREFIX = "<!-- oneclaw:timestamp="
     private const val MESSAGE_TIMESTAMP_SUFFIX = " -->"
     private val frontmatterDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
 

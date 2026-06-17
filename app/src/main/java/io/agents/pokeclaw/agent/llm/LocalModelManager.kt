@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent.llm
@@ -326,7 +326,7 @@ object LocalModelManager {
     }
 
     private fun canWriteToDirectory(dir: File): Boolean {
-        val probe = File(dir, ".pokeclaw-write-probe")
+        val probe = File(dir, ".oneclaw-write-probe")
         return runCatching {
             FileOutputStream(probe, false).use { output ->
                 output.write(1)
@@ -535,7 +535,7 @@ object LocalModelManager {
             // Rename temp to final
             if (targetFile.exists()) targetFile.delete()
             if (!tempFile.renameTo(targetFile)) {
-                callback.onError("Download finished but PokeClaw could not move the model into place")
+                callback.onError("Download finished but OneClaw could not move the model into place")
                 return
             }
 

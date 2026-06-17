@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.service
@@ -10,7 +10,7 @@ import io.agents.pokeclaw.utils.XLog
 
 /**
  * Boot broadcast receiver retained for future restart hooks.
- * PokeClaw no longer starts a persistent foreground notification on boot.
+ * OneClaw no longer starts a persistent foreground notification on boot.
  */
 class BootReceiver : BroadcastReceiver() {
 

@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.automation
@@ -16,8 +16,8 @@ import java.util.Base64
  * Settings before any request is executed.
  */
 object ExternalAutomationContract {
-    const val ACTION_RUN_TASK = "io.agents.pokeclaw.RUN_TASK"
-    const val ACTION_RUN_CHAT = "io.agents.pokeclaw.RUN_CHAT"
+    const val ACTION_RUN_TASK = "xyz.westr42.oneclaw.RUN_TASK"
+    const val ACTION_RUN_CHAT = "xyz.westr42.oneclaw.RUN_CHAT"
 
     const val EXTRA_TASK = "task"
     const val EXTRA_CHAT = "chat"

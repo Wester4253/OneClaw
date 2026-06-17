@@ -28,9 +28,9 @@ Download the .apk from the repo, sideload or install it on your android device. 
 - [x] Add skills management menu
 - [x] Add more color themes
 - [ ] Add in-app skill editing
-- [ ] Add Openrouter support
+- [x] Add Openrouter support
 - [ ] Add tool management
-- [ ] Change app branding to reflect fork
+- [x] Change app branding to OneClaw
 
 ---
 
@@ -65,4 +65,3 @@ Download the .apk from the repo, sideload or install it on your android device. 
     />
   </a>
 </p>
-

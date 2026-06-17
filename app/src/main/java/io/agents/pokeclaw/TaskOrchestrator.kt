@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw
@@ -363,9 +363,9 @@ class TaskOrchestrator(
                 val completedSession = releaseTask()
                 ChannelManager.flushMessages(completedSession.channel ?: channel)
                 FloatingCircleManager.setSuccessState()
-                // Auto-return to PokeClaw after in-app task completes
+                // Auto-return to OneClaw after in-app task completes
                 if (completedSession.autoReturnToChat) {
-                    XLog.i(TAG, "onComplete: auto-returning to PokeClaw chatroom")
+                    XLog.i(TAG, "onComplete: auto-returning to OneClaw chatroom")
                     try {
                         val context = ClawApplication.instance
                         val intent = android.content.Intent(context, io.agents.pokeclaw.ui.chat.ComposeChatActivity::class.java).apply {

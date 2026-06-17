@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.settings
@@ -81,7 +81,7 @@ class SkillsActivity : BaseActivity() {
             leadingIcon = android.R.drawable.ic_menu_edit,
             title = "Copy SKILL.md Template",
             onClick = {
-                copyToClipboard("PokeClaw SKILL.md template", SAMPLE_SKILL)
+                copyToClipboard("OneClaw SKILL.md template", SAMPLE_SKILL)
                 Toast.makeText(this, "Template copied", Toast.LENGTH_SHORT).show()
             },
             showDivider = false,
@@ -98,7 +98,7 @@ class SkillsActivity : BaseActivity() {
                 leadingIcon = android.R.drawable.ic_menu_upload,
                 title = dir.displayPath(),
                 onClick = {
-                    copyToClipboard("PokeClaw skills folder", dir.absolutePath)
+                    copyToClipboard("OneClaw skills folder", dir.absolutePath)
                     Toast.makeText(this, "Path copied", Toast.LENGTH_SHORT).show()
                 },
                 trailingText = if (dir.exists()) "Ready" else "Missing",
@@ -131,7 +131,7 @@ class SkillsActivity : BaseActivity() {
                     drawable
                 }
                 setOnClickListener {
-                    copyToClipboard("PokeClaw skill source", skill.source)
+                    copyToClipboard("OneClaw skill source", skill.source)
                     Toast.makeText(this@SkillsActivity, "Skill source copied", Toast.LENGTH_SHORT).show()
                 }
             }

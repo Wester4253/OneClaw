@@ -51,13 +51,16 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.agents.pokeclaw"
+        applicationId = "xyz.westr42.oneclaw"
         minSdk = 28
         targetSdk = 36
-        versionCode = readLocalOrEnvInt("POKECLAW_VERSION_CODE", 30)
-        versionName = readLocalOrEnvString("POKECLAW_VERSION_NAME", "0.8")
+        versionCode = readLocalOrEnvString("ONECLAW_VERSION_CODE").toIntOrNull()
+            ?: readLocalOrEnvString("POKECLAW_VERSION_CODE").toIntOrNull()
+            ?: 30
+        versionName = readLocalOrEnvString("ONECLAW_VERSION_NAME")
+            .ifBlank { readLocalOrEnvString("POKECLAW_VERSION_NAME", "0.8") }
         buildConfigField("String", "VERSION_INFO", getVersionGit())
-        buildConfigField("String", "APP_ORIGIN", "\"PokeClaw by agents.io | github.com/agents-io/PokeClaw\"")
+        buildConfigField("String", "APP_ORIGIN", "\"OneClaw by westr42 | based on agents-io/PokeClaw\"")
         buildConfigField("String", "BUILD_FINGERPRINT", "\"${getBuildFingerprint()}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,7 +77,10 @@ android {
         }
 
         release {
-            signingConfig = signingConfigs.getByName("release")
+            val releaseSigning = signingConfigs.getByName("release")
+            if (releaseSigning.storeFile != null) {
+                signingConfig = releaseSigning
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -193,7 +199,7 @@ androidComponents {
         variant.outputs.forEach { output ->
             if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
                 val versionName = android.defaultConfig.versionName ?: "0.0.0"
-                val fileName = "PokeClaw_v${versionName}_${getDateTime()}.apk"
+                val fileName = "OneClaw_v${versionName}_${getDateTime()}.apk"
                 println("output file name: $fileName")
                 output.outputFileName.set(fileName)
             }

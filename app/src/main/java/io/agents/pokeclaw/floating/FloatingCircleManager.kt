@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.floating
@@ -380,7 +380,7 @@ object FloatingCircleManager {
             Channel.DISCORD -> R.drawable.ic_channel_discord
             Channel.TELEGRAM -> R.drawable.ic_channel_telegram
             Channel.WECHAT -> R.drawable.ic_channel_wechat
-            else -> R.drawable.ic_launcher
+            else -> R.drawable.oneclaw_icon_small
         }
     }
 

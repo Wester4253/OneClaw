@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.tool.impl;
@@ -65,8 +65,8 @@ public class GetNotificationsTool extends BaseTool {
             StringBuilder sb = new StringBuilder();
             int count = 0;
             for (StatusBarNotification sbn : notifications) {
-                // Skip PokeClaw's own notifications
-                if ("io.agents.pokeclaw".equals(sbn.getPackageName())) continue;
+                // Skip OneClaw's own notifications
+                if (io.agents.pokeclaw.BuildConfig.APPLICATION_ID.equals(sbn.getPackageName())) continue;
 
                 Notification notif = sbn.getNotification();
                 if (notif == null || notif.extras == null) continue;
@@ -108,7 +108,7 @@ public class GetNotificationsTool extends BaseTool {
             }
 
             if (count == 0) {
-                return ToolResult.success("No active notifications (only PokeClaw system notifications present).");
+                return ToolResult.success("No active notifications (only OneClaw system notifications present).");
             }
 
             XLog.d(TAG, "Read " + count + " notifications");

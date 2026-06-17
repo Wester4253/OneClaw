@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.utils;
@@ -18,14 +18,14 @@ import java.net.URL;
 import java.util.concurrent.Executors;
 
 /**
- * Checks GitHub Releases for a newer version of PokeClaw.
+ * Checks GitHub Releases for a newer version of OneClaw.
  * Call checkForUpdate() once in onCreate — it runs on a background thread,
  * shows a dialog on the main thread if a newer version exists.
  */
 public class UpdateChecker {
 
     private static final String TAG = "UpdateChecker";
-    private static final String GITHUB_API = "https://api.github.com/repos/agents-io/PokeClaw/releases/latest";
+    private static final String GITHUB_API = "https://api.github.com/repos/Wester4253/OneClaw/releases/latest";
     private static final long CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000; // Once per day
 
     public static void checkForUpdate(Activity activity) {
@@ -102,7 +102,7 @@ public class UpdateChecker {
     private static void showUpdateDialog(Activity activity, String version, String url, boolean debugBuild) {
         try {
             StringBuilder message = new StringBuilder()
-                    .append("PokeClaw v")
+                    .append("OneClaw v")
                     .append(version)
                     .append(" is available. You are running an older version.\n\n")
                     .append("Would you like to download the update?");

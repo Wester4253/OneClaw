@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.ui.chat
@@ -277,7 +277,7 @@ class TaskFlowController(
             uiState.isAwaitingReply.value = false
             uiState.isTaskRunning.value = false
             addSystem("✓ Auto-reply is now active for ${target.displayLabel}.\nMonitoring in background — you can stop anytime from the bar above.")
-            XLog.i(TAG, "startMonitor: monitor active, staying in PokeClaw")
+            XLog.i(TAG, "startMonitor: monitor active, staying in OneClaw")
         }, 1500)
     }
 
@@ -389,7 +389,7 @@ class TaskFlowController(
         if (note == lastMonitorStatusNote) return
         addSystem(note)
         lastMonitorStatusNote = note
-        XLog.i(TAG, "checkAutoReplyConfirmation: monitor active, staying in PokeClaw")
+        XLog.i(TAG, "checkAutoReplyConfirmation: monitor active, staying in OneClaw")
     }
 
     private fun ensureNotificationPermission() {

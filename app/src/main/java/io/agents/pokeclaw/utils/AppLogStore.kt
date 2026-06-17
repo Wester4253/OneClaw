@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.utils
@@ -22,8 +22,8 @@ import java.util.Locale
 object AppLogStore {
 
     private const val LOG_DIR = "app_logs"
-    private const val ACTIVE_LOG = "pokeclaw-app.log"
-    private const val PREVIOUS_LOG = "pokeclaw-app.prev.log"
+    private const val ACTIVE_LOG = "oneclaw-app.log"
+    private const val PREVIOUS_LOG = "oneclaw-app.prev.log"
     private const val MAX_LOG_BYTES = 512L * 1024L
 
     @Volatile

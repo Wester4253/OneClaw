@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.debug
@@ -24,14 +24,14 @@ import org.json.JSONObject
  * Debug-only broadcast receiver for triggering tasks via ADB without UI interaction.
  *
  * Usage:
- *   adb shell am broadcast -a io.agents.pokeclaw.DEBUG_TASK --es task "open my camera"
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.DEBUG_TASK -p xyz.westr42.oneclaw --es task "open my camera"
  *
  * Set Cloud LLM config (any provider):
- *   adb shell am broadcast -a io.agents.pokeclaw.DEBUG_TASK --es task "config:" \
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.DEBUG_TASK -p xyz.westr42.oneclaw --es task "config:" \
  *     --es api_key "sk-..." --es model_name "gpt-4o-mini"
  *
  * With custom base URL (OpenRouter, Groq, Ollama, etc.):
- *   adb shell am broadcast -a io.agents.pokeclaw.DEBUG_TASK --es task "config:" \
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.DEBUG_TASK -p xyz.westr42.oneclaw --es task "config:" \
  *     --es api_key "sk-..." --es provider "OPENROUTER" --es model_name "google/gemini-2.5-flash"
  */
 class DebugTaskReceiver : BroadcastReceiver() {

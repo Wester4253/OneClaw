@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.utils
@@ -380,7 +380,7 @@ object KVUtils {
     fun hasGlobalPrompt(): Boolean = getGlobalPrompt().isNotBlank()
 
     // ==================== Custom Local Model URL (#36) ====================
-    // Advanced: lets user point PokeClaw at a custom .litertlm download URL
+    // Advanced: lets user point OneClaw at a custom .litertlm download URL
     // (e.g. self-hosted, HuggingFace mirrors) instead of only the built-in catalog.
     // Empty string = no custom model. fileName is derived from URL last segment.
 

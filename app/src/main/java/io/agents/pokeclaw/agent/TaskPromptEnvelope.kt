@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent
@@ -23,12 +23,12 @@ data class ParsedTaskPrompt(
  */
 object TaskPromptEnvelope {
 
-    private const val HISTORY_START = "<<<POKECLAW_CHAT_HISTORY>>>"
-    private const val HISTORY_END = "<<<END_POKECLAW_CHAT_HISTORY>>>"
-    private const val BACKGROUND_START = "<<<POKECLAW_BACKGROUND_STATE>>>"
-    private const val BACKGROUND_END = "<<<END_POKECLAW_BACKGROUND_STATE>>>"
-    private const val REQUEST_START = "<<<POKECLAW_CURRENT_REQUEST>>>"
-    private const val REQUEST_END = "<<<END_POKECLAW_CURRENT_REQUEST>>>"
+    private const val HISTORY_START = "<<<ONECLAW_CHAT_HISTORY>>>"
+    private const val HISTORY_END = "<<<END_ONECLAW_CHAT_HISTORY>>>"
+    private const val BACKGROUND_START = "<<<ONECLAW_BACKGROUND_STATE>>>"
+    private const val BACKGROUND_END = "<<<END_ONECLAW_BACKGROUND_STATE>>>"
+    private const val REQUEST_START = "<<<ONECLAW_CURRENT_REQUEST>>>"
+    private const val REQUEST_END = "<<<END_ONECLAW_CURRENT_REQUEST>>>"
 
     fun build(
         chatHistoryLines: List<String>,

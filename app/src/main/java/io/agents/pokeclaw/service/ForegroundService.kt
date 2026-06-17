@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.service
@@ -27,14 +27,14 @@ class ForegroundService : Service() {
     companion object {
         private const val TAG = "ForegroundService"
         private const val MONITOR_HEALTH_POLL_MS = 5_000L
-        const val CHANNEL_ID = "PokeClaw_foreground_channel"
+        const val CHANNEL_ID = "OneClaw_foreground_channel"
         const val NOTIFICATION_ID = 1001
         private const val EXTRA_TITLE = "extra_title"
         private const val EXTRA_TEXT = "extra_text"
-        private const val DEFAULT_TASK_TITLE = "PokeClaw · Task in progress"
+        private const val DEFAULT_TASK_TITLE = "OneClaw · Task in progress"
         private const val DEFAULT_TASK_TEXT = "Running task..."
-        private const val DEFAULT_MONITOR_TITLE = "PokeClaw · Monitoring"
-        private const val DEGRADED_MONITOR_TITLE = "PokeClaw · Monitoring paused"
+        private const val DEFAULT_MONITOR_TITLE = "OneClaw · Monitoring"
+        private const val DEGRADED_MONITOR_TITLE = "OneClaw · Monitoring paused"
 
         private enum class ForegroundMode {
             IDLE,

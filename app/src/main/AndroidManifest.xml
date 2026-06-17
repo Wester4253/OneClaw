@@ -29,7 +29,7 @@
         android:required="true" />
 
     <application
-        android:name=".ClawApplication"
+        android:name="io.agents.pokeclaw.ClawApplication"
         android:allowBackup="false"
         android:networkSecurityConfig="@xml/network_security_config"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -38,14 +38,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PokeClaw">
+        android:theme="@style/Theme.OneClaw">
 
         <!-- 启动页 -->
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="io.agents.pokeclaw.ui.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.PokeClaw.Splash">
+            android:theme="@style/Theme.OneClaw.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -54,77 +54,77 @@
 
 
         <activity
-            android:name=".ui.guide.GuideActivity"
+            android:name="io.agents.pokeclaw.ui.guide.GuideActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.chat.ComposeChatActivity"
+            android:name="io.agents.pokeclaw.ui.chat.ComposeChatActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.settings.ThemeActivity"
+            android:name="io.agents.pokeclaw.ui.settings.ThemeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.settings.SkillsActivity"
+            android:name="io.agents.pokeclaw.ui.settings.SkillsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name="io.agents.pokeclaw.ui.settings.SettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.settings.LlmConfigActivity"
+            android:name="io.agents.pokeclaw.ui.settings.LlmConfigActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.settings.ChannelConfigActivity"
+            android:name="io.agents.pokeclaw.ui.settings.ChannelConfigActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.web.WebActivity"
+            android:name="io.agents.pokeclaw.ui.web.WebActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tool.impl.ClipboardReaderActivity"
+            android:name="io.agents.pokeclaw.tool.impl.ClipboardReaderActivity"
             android:exported="false"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.Transparent" />
         <activity
-            android:name=".automation.ExternalAutomationActivity"
+            android:name="io.agents.pokeclaw.automation.ExternalAutomationActivity"
             android:exported="true"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
-                <action android:name="io.agents.pokeclaw.RUN_TASK" />
-                <action android:name="io.agents.pokeclaw.RUN_CHAT" />
+                <action android:name="xyz.westr42.oneclaw.RUN_TASK" />
+                <action android:name="xyz.westr42.oneclaw.RUN_CHAT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <receiver
-            android:name=".debug.DebugTaskReceiver"
+            android:name="io.agents.pokeclaw.debug.DebugTaskReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.agents.pokeclaw.DEBUG_TASK" />
+                <action android:name="xyz.westr42.oneclaw.DEBUG_TASK" />
             </intent-filter>
         </receiver>
 
         <receiver
-            android:name=".automation.ExternalAutomationReceiver"
+            android:name="io.agents.pokeclaw.automation.ExternalAutomationReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.agents.pokeclaw.RUN_TASK" />
-                <action android:name="io.agents.pokeclaw.RUN_CHAT" />
+                <action android:name="xyz.westr42.oneclaw.RUN_TASK" />
+                <action android:name="xyz.westr42.oneclaw.RUN_CHAT" />
             </intent-filter>
         </receiver>
 
         <service
-            android:name=".service.ClawNotificationListener"
+            android:name="io.agents.pokeclaw.service.ClawNotificationListener"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
@@ -133,7 +133,7 @@
         </service>
 
         <service
-            android:name=".service.ClawAccessibilityService"
+            android:name="io.agents.pokeclaw.service.ClawAccessibilityService"
             android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -155,21 +155,21 @@
         </provider>
 
         <service
-            android:name=".service.ForegroundService"
+            android:name="io.agents.pokeclaw.service.ForegroundService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="specialUse" />
 
         <!-- 定时守护 -->
         <service
-            android:name=".service.KeepAliveJobService"
+            android:name="io.agents.pokeclaw.service.KeepAliveJobService"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <!-- 开机自启动 -->
         <receiver
-            android:name=".service.BootReceiver"
+            android:name="io.agents.pokeclaw.service.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -180,10 +180,10 @@
 
         <!-- Debug: trigger tasks via ADB broadcast -->
         <receiver
-            android:name=".debug.TaskTriggerReceiver"
+            android:name="io.agents.pokeclaw.debug.TaskTriggerReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="io.agents.pokeclaw.TASK" />
+                <action android:name="xyz.westr42.oneclaw.TASK" />
             </intent-filter>
         </receiver>
 

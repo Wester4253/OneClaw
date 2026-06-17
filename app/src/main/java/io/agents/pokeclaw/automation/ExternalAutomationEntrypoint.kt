@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.automation
@@ -16,7 +16,7 @@ object ExternalAutomationEntrypoint {
 
     fun handle(context: Context, intent: Intent?, launchFlags: Int): Boolean {
         if (intent == null) return false
-        if (!isTargetedToPokeClaw(context, intent)) {
+        if (!isTargetedToOneClaw(context, intent)) {
             XLog.w(TAG, "Rejected non-targeted external automation request: ${intent.action}")
             return false
         }
@@ -36,7 +36,7 @@ object ExternalAutomationEntrypoint {
                 returnAction = request.returnAction,
                 requestId = request.requestId,
                 status = ExternalAutomationContract.STATUS_REJECTED,
-                error = "External Automation is disabled in PokeClaw Settings.",
+                error = "External Automation is disabled in OneClaw Settings.",
                 returnPackage = request.returnPackage,
                 mode = request.mode,
             )
@@ -49,7 +49,7 @@ object ExternalAutomationEntrypoint {
                 returnAction = request.returnAction,
                 requestId = request.requestId,
                 status = ExternalAutomationContract.STATUS_REJECTED,
-                error = "Another PokeClaw task is already running.",
+                error = "Another OneClaw task is already running.",
                 returnPackage = request.returnPackage,
                 mode = request.mode,
             )
@@ -80,7 +80,7 @@ object ExternalAutomationEntrypoint {
         return true
     }
 
-    private fun isTargetedToPokeClaw(context: Context, intent: Intent): Boolean {
+    private fun isTargetedToOneClaw(context: Context, intent: Intent): Boolean {
         val packageName = context.packageName
         val component = intent.component
         return component?.packageName == packageName || intent.`package` == packageName

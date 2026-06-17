@@ -26,8 +26,8 @@
             android:id="@+id/ivLeading"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_launcher"
-            android:scaleType="centerCrop"
+            android:src="@drawable/oneclaw_icon_small"
+            android:scaleType="fitCenter"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Launcher.Small"
             tools:ignore="UseAppTint" />
 

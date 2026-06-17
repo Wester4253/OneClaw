@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw
@@ -51,15 +51,15 @@ class ClawApplication : BaseApp() {
         appViewModelInstance.initCommon()
         Thread({
             try {
-                android.util.Log.e("POKECLAW_INIT", "app-async-init thread STARTED")
+                android.util.Log.e("ONECLAW_INIT", "app-async-init thread STARTED")
                 val hasConfig = KVUtils.hasLlmConfig()
-                android.util.Log.e("POKECLAW_INIT", "app-async-init: hasLlmConfig=$hasConfig, canDrawOverlays=${android.provider.Settings.canDrawOverlays(instance)}")
+                android.util.Log.e("ONECLAW_INIT", "app-async-init: hasLlmConfig=$hasConfig, canDrawOverlays=${android.provider.Settings.canDrawOverlays(instance)}")
                 if (hasConfig) {
                     appViewModelInstance.initAgent()
                     appViewModelInstance.afterInit()
                 }
             } catch (e: Exception) {
-                android.util.Log.e("POKECLAW_INIT", "app-async-init CRASHED: ${e.message}", e)
+                android.util.Log.e("ONECLAW_INIT", "app-async-init CRASHED: ${e.message}", e)
             }
         }, "app-async-init").start()
     }

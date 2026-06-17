@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.agent.knowledge
@@ -13,7 +13,7 @@ import java.util.Locale
 /**
  * Knowledge Base Manager — reads and writes the local MD vault.
  *
- * Vault root: /storage/emulated/0/Android/data/io.agents.pokeclaw/files/vault/
+ * Vault root: /storage/emulated/0/Android/data/xyz.westr42.oneclaw/files/vault/
  *
  * All paths passed to public methods are relative to the vault root.
  * Path traversal (../) is stripped before resolving.

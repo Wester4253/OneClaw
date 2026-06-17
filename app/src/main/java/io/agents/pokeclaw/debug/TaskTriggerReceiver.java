@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.debug;
@@ -15,16 +15,16 @@ import io.agents.pokeclaw.utils.XLog;
  * Debug broadcast receiver to trigger tasks via ADB without manual UI interaction.
  *
  * Usage:
- *   adb shell am broadcast -a io.agents.pokeclaw.TASK --es task "send hi to Mom on WhatsApp" -p io.agents.pokeclaw
- *   adb shell am broadcast -a io.agents.pokeclaw.TASK --es chat "read my clipboard and explain what it says" -p io.agents.pokeclaw
- *   adb shell am broadcast -a io.agents.pokeclaw.TASK --es chat_b64 "$(printf 'remember token abc123 and reply with only OK' | base64 -w0)" -p io.agents.pokeclaw
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.TASK --es task "send hi to Mom on WhatsApp" -p xyz.westr42.oneclaw
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.TASK --es chat "read my clipboard and explain what it says" -p xyz.westr42.oneclaw
+ *   adb shell am broadcast -a xyz.westr42.oneclaw.TASK --es chat_b64 "$(printf 'remember token abc123 and reply with only OK' | base64 -w0)" -p xyz.westr42.oneclaw
  *
  * Launches ComposeChatActivity with the matching extra — works even after reinstall.
  */
 public class TaskTriggerReceiver extends BroadcastReceiver {
 
     private static final String TAG = "TaskTriggerReceiver";
-    public static final String ACTION = "io.agents.pokeclaw.TASK";
+    public static final String ACTION = "xyz.westr42.oneclaw.TASK";
 
     @Override
     public void onReceive(Context context, Intent intent) {

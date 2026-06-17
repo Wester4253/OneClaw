@@ -1,4 +1,4 @@
-// Copyright 2026 PokeClaw (agents.io). All rights reserved.
+// Copyright 2026 OneClaw (agents.io). All rights reserved.
 // Licensed under the Apache License, Version 2.0.
 
 package io.agents.pokeclaw.support
@@ -32,7 +32,7 @@ object DebugReportManager {
     fun buildReport(context: Context): File {
         val reportDir = File(context.cacheDir, REPORT_DIR).apply { mkdirs() }
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
-        val output = File(reportDir, "pokeclaw-debug-$timestamp.zip")
+        val output = File(reportDir, "oneclaw-debug-$timestamp.zip")
 
         ZipOutputStream(FileOutputStream(output)).use { zip ->
             addText(zip, "summary.txt", buildSummary(context))
@@ -65,7 +65,7 @@ object DebugReportManager {
             nowMs = System.currentTimeMillis(),
         )
         return buildString {
-            appendLine("PokeClaw Debug Report")
+            appendLine("OneClaw Debug Report")
             appendLine("Generated: ${Date()}")
             appendLine()
             appendLine("App")
@@ -140,7 +140,7 @@ object DebugReportManager {
 
     private fun buildBugReportTemplate(context: Context): String {
         return buildString {
-            appendLine("PokeClaw Bug Report Template")
+            appendLine("OneClaw Bug Report Template")
             appendLine()
             appendLine("Attach this ZIP and fill in the blanks below:")
             appendLine()
@@ -153,12 +153,12 @@ object DebugReportManager {
             appendLine()
             appendLine("If this looks device-specific and you have ADB available, add:")
             appendLine("adb logcat -c")
-            appendLine("adb logcat -v time > pokeclaw-logcat.txt")
+            appendLine("adb logcat -v time > oneclaw-logcat.txt")
             appendLine("# reproduce once, then stop with Ctrl+C")
-            appendLine("adb shell dumpsys activity top > pokeclaw-activity-top.txt")
-            appendLine("adb shell dumpsys activity services io.agents.pokeclaw > pokeclaw-services.txt")
+            appendLine("adb shell dumpsys activity top > oneclaw-activity-top.txt")
+            appendLine("adb shell dumpsys activity services ${context.packageName} > oneclaw-services.txt")
             appendLine()
-            appendLine("Open a new GitHub issue: https://github.com/agents-io/PokeClaw/issues/new")
+            appendLine("Open a new GitHub issue: https://github.com/Wester4253/OneClaw/issues/new")
             appendLine("Built on: ${Date()}")
             appendLine("Package: ${context.packageName}")
         }
