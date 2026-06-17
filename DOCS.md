@@ -1,2 +1,2 @@
- - [Compilation](https://wester4253.github.io/PokeClaw-addskills/COMPILE)
+ - [Compilation](https://wester4253.github.io/OneClaw/COMPILE)
 - add more as more docs come.
